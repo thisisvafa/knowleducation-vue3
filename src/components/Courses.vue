@@ -1,27 +1,32 @@
 <script setup lang="ts">
+import Title from '@/components/Title.vue'
 import { ref, onMounted } from 'vue';
 
 const isLoading = ref(true);
 const blogs = ref([]);
 
-onMounted(async () => {
+async function fetchData() {
+  try {
     await new Promise((resolve) => setTimeout(resolve, 2000));
-
     const response = await fetch('/api/blogs');
     const data = await response.json();
     blogs.value = data.blogs;
     isLoading.value = false;
+} catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+onMounted(() => {
+  fetchData();
 });
 
 </script>
 
 <template>
-    <div class="py-16 px-28">
-        <div class="flex items-center justify-between space-x-3 mb-6">
-            <h3 class="font-righteous font-bold text-4xl text-gray-600 w-72">Our Courses</h3>
-            <div class="w-full h-[1px] bg-gray-300"></div>
-        </div>
-        
+    <div>
+        <Title title="Our Courses" :line=true />
+    
         <div v-if="isLoading" class="grid grid-cols-3 gap-8">
             <div v-for="index in 6" :key="index" class="bg-[#f7f9fb] animate-pulse shadow-lg rounded-2xl p-4">
                 <img src="" class="bg-slate-300 w-full h-80 rounded-lg overflow-hidden font-righteous font-extrabold text-7xl text-gray-300 text-center leading-[20rem]" alt="IMAGE">

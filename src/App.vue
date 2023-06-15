@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import MainSection from './components/MainSection.vue'
 import Navbar from './components/global/Navbar.vue'
 import Footer from './components/global/Footer.vue'
 import Logo from './components/Logo.vue'
@@ -39,10 +40,10 @@ import ContactUs from './components/Contact.vue'
     </div>
   </div>
 
-  <div class="bg-[#f7f9fb] px-28">
+
+  <MainSection class="bg-[#f7f9fb]">
     <div class="flex items-center space-x-20 py-12">
       <div class="w-1/4">
-
         <div class="group relative rounded-2xl shadow-lg p-6 px-6 mb-8">
           <span class="absolute z-0 top-4 right-0 font-righteous font-bold text-[50px] origin-center rotate-45 opacity-5">0th</span>
           <div class="relative flex items-center space-x-10">
@@ -102,11 +103,16 @@ import ContactUs from './components/Contact.vue'
         </p>
       </div>
     </div>
-  </div>
+  </MainSection>
 
-  <Courses />
+  <MainSection>
+    <Courses />
+  </MainSection>
 
-  <ContactUs />
+  <MainSection class="bg-[#f7f9fb]">
+    <ContactUs />
+  </MainSection>
+  
   <Footer class="bg-[#f7f9fb]" />
   
 </template>
